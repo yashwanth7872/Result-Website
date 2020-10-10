@@ -1,0 +1,5 @@
+{% for each_sem in sems %}
+   {% for data in each_sem.list_of_subjects %}
+        {{data.sub_code}}
+    {%endfor%}
+{%endfor%}

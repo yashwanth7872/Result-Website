@@ -1,0 +1,95 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVCE Results | {{basic.name}}</title>
+    <link rel="stylesheet" href="{% static 'result/index_styles.css' %}">
+</head>
+<body>
+
+    <header >
+        <nav id="nav-bar">
+            <div id="logo">
+                <a href="#" >UVCE <br>Results</a>
+            </div>
+            <form action="http://127.0.0.1:8000/admin/">
+               <button style="cursor: pointer;" type="submit" id="admin-btn">Admin</button>
+            </form>
+        </nav>
+
+    </header>
+
+    <div class="container">
+        <div id="basic-details" class="card">
+            NAME : {{basic.name}}<br>
+            USN&nbsp;&nbsp;&nbsp;&nbsp;: {{basic.reg_no}}
+        </div>
+        <div id="cgpa-aggregate" class="card card2">
+            <div class="row">
+                <div id="cgpa" class="circle">
+                    {{cgpa}}
+                </div>
+                <div>CGPA</div>
+            </div>
+            <div class="row">
+                <div id="aggregate" class="circle">
+                    {{aggregate}}%
+                </div>
+                <div>Aggregate</div>
+            </div>
+        </div>
+        {% for each_sem in sems %}
+            {% if not each_sem.list_of_subjects %}
+            {% else %}
+        
+            <div id="sem{{each_sem.sem}}" class="card">
+
+                Sem : {{each_sem.sem}}
+                <input type="checkbox" id="{{each_sem.sgpa}}" class="accordion__input">
+                <label for="{{each_sem.sgpa}}">Detailed View</label>
+                <div class="accordion__content">
+                    <table width="100%">
+                        <tr>
+                            <th>Subject</th>
+                            <th>Credits</th>
+                            <th>Internal Marks</th>
+                            <th>Theory Marks</th>
+                            <th>Total</th>
+                            <th>Grade</th>
+                        </tr>
+                        {% for data in each_sem.list_of_subjects %}
+                        
+                        <tr>
+                            <td>{{data.sub_code.sub_short_form}}</td>
+                            <td>{{data.sub_code.sub_credit}}</td>
+                            <td>{{data.internal}}</td>
+                            <td>{{data.theory}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                        {% endfor %}
+                    </table>
+                </div>
+                <section>
+                    <div> SGPA : &nbsp;{{each_sem.sgpa}}<br>
+                        Credit Points : {{each_sem.total_credit_points}}
+                    </div>
+                    <div>Percentage : {{each_sem.percentage}}%<br>
+                        Total Marks : {{each_sem.total_marks}}/{{each_sem.total_max_marks}}<span></span>
+                    </div>
+                </section>
+            </div>
+            {% endif %}
+        {%endfor%}    
+        
+    </div>
+    <footer>
+        Designed and Maintained by<br>Yashwanth M
+    </footer>
+
+    <script src="{% static 'result/script.js' %}"></script>
+</body>
+</html>

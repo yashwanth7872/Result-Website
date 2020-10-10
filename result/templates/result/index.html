@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVCE Results</title>
+    <link rel="stylesheet" href="{% static 'result/index_styles.css' %}">
+</head>
+<body>
+
+    <header >
+        <nav id="nav-bar">
+            <div id="logo">
+                <a href="#" >UVCE <br>Results</a>
+            </div>
+            <button id="admin-btn">Admin</button>
+        </nav>
+
+    </header>
+
+    <div id="search-box">
+        <form action="fetch" >
+            
+            <div id="reg-field">
+                <label>Register No.</label>
+                <input id="reg" type="text" name="reg"  minlength="10" maxlength="10" required>
+               
+            </div>
+            <button id="search-btn" type="submit">Go</button>
+        </form>
+           
+    </div>
+    <footer style="position: absolute;">
+        Designed and Maintained by<br>Yashwanth M
+    </footer>
+    
+    
+</body>
+</html>
